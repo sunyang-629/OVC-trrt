@@ -1,9 +1,11 @@
-import React from 'react';
+import React from "react";
 
-function App() {
+import Routes from "./routes/Router";
+
+const App:React.FunctionComponent = () => {
   return (
     <div className="App">
-      <p>test</p>
+      <Routes></Routes>
     </div>
   );
 }

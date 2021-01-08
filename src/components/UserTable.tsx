@@ -37,12 +37,16 @@ const useStyles = makeStyles({
 });
 
 const rows = [
-  { name: 'harry', calories: 123, fat: 5.9, carbs: 24, protein: 4.0 },
-  { name: 'potter', calories: 123, fat: 5.9, carbs: 24, protein: 4.0 },
-  { name: 'test', calories: 123, fat: 5.9, carbs: 24, protein: 4.0 },
+  { name: 'harry', calories: 123, fat: 5.9, carbs: 24, },
+  { name: 'potter', calories: 123, fat: 5.9, carbs: 24, },
+  { name: 'test', calories: 123, fat: 5.9, carbs: 24, },
 ]
 
-const UserTable = () => {
+type UserTableProps = {
+  titles:String[],
+}
+
+const UserTable:React.FunctionComponent<UserTableProps> = ({titles}) => {
   const classes = useStyles();
 
   return (
@@ -50,23 +54,18 @@ const UserTable = () => {
       <Table className={classes.table} aria-label="customized table">
         <TableHead>
           <TableRow>
-            <StyledTableCell>Dessert (100g serving)</StyledTableCell>
-            <StyledTableCell align="right">Calories</StyledTableCell>
-            <StyledTableCell align="right">Fat&nbsp;(g)</StyledTableCell>
-            <StyledTableCell align="right">Carbs&nbsp;(g)</StyledTableCell>
-            <StyledTableCell align="right">Protein&nbsp;(g)</StyledTableCell>
+            {titles.map(title => {
+              return <StyledTableCell align="center">{title}</StyledTableCell>
+            })}
           </TableRow>
         </TableHead>
         <TableBody>
           {rows.map((row) => (
             <StyledTableRow key={row.name}>
-              <StyledTableCell component="th" scope="row">
-                {row.name}
-              </StyledTableCell>
-              <StyledTableCell align="right">{row.calories}</StyledTableCell>
-              <StyledTableCell align="right">{row.fat}</StyledTableCell>
-              <StyledTableCell align="right">{row.carbs}</StyledTableCell>
-              <StyledTableCell align="right">{row.protein}</StyledTableCell>
+              <StyledTableCell align="center">{row.name}</StyledTableCell>
+              <StyledTableCell align="center">{row.calories}</StyledTableCell>
+              <StyledTableCell align="center">{row.fat}</StyledTableCell>
+              <StyledTableCell align="center">{row.carbs}</StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>

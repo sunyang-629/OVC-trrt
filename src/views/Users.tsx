@@ -4,11 +4,11 @@ import UserTable from '../components/UserTable';
 
 const Users:React.FunctionComponent<{}> = () => {
 
-
+  const titles: String[] = ['Name', 'Email', 'City', 'Company'];
 
   return (
     <div>
-      <UserTable />
+      <UserTable titles={titles} />
     </div>
   )
 }

@@ -6,16 +6,7 @@ import { RootState } from "../redux/reducers/rootReducer";
 // import _ from "lodash";
 
 import UserTable from '../components/UserTable';
-// export interface filteredUsers {
-//   name: string;
-//   email: string;
-//   address: {
-//     city: string;
-//   };
-//   company: {
-//     name: string;
-//   }
-// }
+import SearchField from '../components/SearchField';
 
 const Users: React.FunctionComponent<{}> = () => {
   const dispatch = useDispatch();
@@ -29,13 +20,13 @@ const Users: React.FunctionComponent<{}> = () => {
   //   return userArray.push(newUser);
   // })
   
-  console.log('users:',users);
   useEffect(() => {
     dispatch(getAllUsers())
   },[dispatch])
 
   return (
     <div>
+      <SearchField />
       <UserTable titles={titles} users={users.users}/>
     </div>
   )

@@ -8,6 +8,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
+import { User } from '../redux/actions';
+
 const StyledTableCell = withStyles((theme: Theme) =>
   createStyles({
     head: {
@@ -43,10 +45,11 @@ const rows = [
 ]
 
 type UserTableProps = {
-  titles:string[],
+  titles: string[],
+  users: User[]
 }
 
-const UserTable:React.FunctionComponent<UserTableProps> = ({titles}) => {
+const UserTable:React.FunctionComponent<UserTableProps> = ({titles,users}) => {
   const classes = useStyles();
 
   return (
@@ -60,12 +63,12 @@ const UserTable:React.FunctionComponent<UserTableProps> = ({titles}) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <StyledTableRow key={row.name}>
-              <StyledTableCell align="center">{row.name}</StyledTableCell>
-              <StyledTableCell align="center">{row.calories}</StyledTableCell>
-              <StyledTableCell align="center">{row.fat}</StyledTableCell>
-              <StyledTableCell align="center">{row.carbs}</StyledTableCell>
+          {users.map((user) => (
+            <StyledTableRow key={user.id}>
+              <StyledTableCell align="center">{user.name}</StyledTableCell>
+              <StyledTableCell align="center">{user.email}</StyledTableCell>
+              <StyledTableCell align="center">{user.address.city}</StyledTableCell>
+              <StyledTableCell align="center">{user.company.name}</StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>

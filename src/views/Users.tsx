@@ -1,6 +1,6 @@
-import React,{useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getAllUsers } from '../redux/actions/userActions';
+import { getAllUsers, User } from '../redux/actions';
 import { RootState } from "../redux/reducers/rootReducer";
 
 // import _ from "lodash";
@@ -14,6 +14,7 @@ const Users: React.FunctionComponent<{}> = () => {
   const titles: string[] = ['name', 'email', 'city', 'company'];
 
   const users = useSelector((state: RootState) => state.user);
+  // let displayUsers:User[] = []
   // const userArray:filteredUsers[] = []
   // users.users.length && users.users.map(user => {
   //   const newUser = _.pick(user, ['name', 'email','address.city','company.name']);
@@ -23,12 +24,19 @@ const Users: React.FunctionComponent<{}> = () => {
   
   useEffect(() => {
     dispatch(getAllUsers());
-  }, [dispatch,users.searchKey])
+  }, [dispatch])
+
+  // useEffect(() => {
+  //   if (users.searchKey) {
+  //     // dispatch(setUserNameSearchKey(users.searchKey));
+  //     console.log('object');
+  //   }
+  // },[users.searchKey])
 
   return (
     <div>
       <SearchField />
-      <UserTable titles={titles} users={users.users}/>
+      <UserTable titles={titles} users={users.searchKey ? users.filteredUsers : users.users }/>
     </div>
   )
 }

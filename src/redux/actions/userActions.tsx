@@ -37,6 +37,7 @@ export interface SetUserNameSearchKeyAction {
   payload: string;
 }
 
+// export interface 
 
 
 export const getAllUsersSuccess = (users:User[]):GetAllUsersSuccessAction => ({
@@ -51,15 +52,14 @@ export const getAllUsers = () => (dispatch:Dispatch<GetAllUsersSuccessAction>) =
     })
 }
 
-// export const setUserNameSearchKey = (search: string) => ({
-//   type: ActionTypes.SET_USER_NAME_SEARCH_KEY,
-//   payload: search
-// })
+export const setUserNameSearchKey = (search: string) => ({
+  type: ActionTypes.SET_USER_NAME_SEARCH_KEY,
+  payload: search
+})
 
-export const setUserNameSearchKey = (search: string) => {
-  console.log('1', search);
-  return {
-    type: ActionTypes.SET_USER_NAME_SEARCH_KEY,
-    payload: search
-  }
-}
+// export const setUserNameSearchKey = (search: string) => {
+//   return {
+//     type: ActionTypes.SET_USER_NAME_SEARCH_KEY,
+//     payload: search
+//   }
+// }

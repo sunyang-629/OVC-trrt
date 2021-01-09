@@ -50,10 +50,10 @@ const useStyles = makeStyles({
 type UserTableProps = {
   titles: string[],
   users: User[],
-  path: string[],
+  paths: string[],
 }
 
-const UserTable:React.FunctionComponent<UserTableProps> = ({titles,users,path}) => {
+const UserTable:React.FunctionComponent<UserTableProps> = ({titles,users,paths}) => {
   const classes = useStyles();
   const history = useHistory();
 
@@ -75,11 +75,11 @@ const UserTable:React.FunctionComponent<UserTableProps> = ({titles,users,path}) 
         <TableBody>
           {users.map((user) => (
             <StyledTableRow onClick={(e) => handleClick(user.id, e)} key={user.id}>
-              {path.map(p => <StyledTableCell key={p} align="center">{_.get(user,p)}</StyledTableCell>)}
-              
-              {/* <StyledTableCell align="center">{user.email}</StyledTableCell>
-              <StyledTableCell align="center">{user.address.city}</StyledTableCell>
-              <StyledTableCell align="center">{_.get(user,path[3])}</StyledTableCell> */}
+              {paths.map(path =>
+                <StyledTableCell key={path} align="center">
+                  {_.get(user, path)}
+                </StyledTableCell>)
+              }
             </StyledTableRow>
           ))}
         </TableBody>

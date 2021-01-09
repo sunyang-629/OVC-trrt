@@ -19,10 +19,11 @@ const Users: React.FunctionComponent<{}> = () => {
   //   const newUser = _.pick(user, ['name', 'email','address.city','company.name']);
   //   return userArray.push(newUser);
   // })
+  // console.log(users);
   
   useEffect(() => {
-    dispatch(getAllUsers())
-  },[dispatch])
+    dispatch(getAllUsers());
+  }, [dispatch,users.searchKey])
 
   return (
     <div>

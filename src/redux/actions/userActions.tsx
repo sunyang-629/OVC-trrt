@@ -29,14 +29,19 @@ export interface User {
 
 export interface GetAllUsersSuccessAction {
   type: ActionTypes.FETCH_ALL_USERS_SUCCESS;
-  payload: {
-    users:User[]
-  }
+  payload: User[]
 }
+
+export interface SetUserNameSearchKeyAction {
+  type: ActionTypes.SET_USER_NAME_SEARCH_KEY;
+  payload: string;
+}
+
+
 
 export const getAllUsersSuccess = (users:User[]):GetAllUsersSuccessAction => ({
   type: ActionTypes.FETCH_ALL_USERS_SUCCESS,
-  payload: {users}
+  payload: users
 })
 
 export const getAllUsers = () => (dispatch:Dispatch<GetAllUsersSuccessAction>) => {
@@ -44,4 +49,17 @@ export const getAllUsers = () => (dispatch:Dispatch<GetAllUsersSuccessAction>) =
     .then(res => {
       dispatch(getAllUsersSuccess(res.data));
     })
+}
+
+// export const setUserNameSearchKey = (search: string) => ({
+//   type: ActionTypes.SET_USER_NAME_SEARCH_KEY,
+//   payload: search
+// })
+
+export const setUserNameSearchKey = (search: string) => {
+  console.log('1', search);
+  return {
+    type: ActionTypes.SET_USER_NAME_SEARCH_KEY,
+    payload: search
+  }
 }

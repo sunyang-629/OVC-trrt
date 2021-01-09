@@ -5,16 +5,13 @@ import { RootState } from "../redux/reducers/rootReducer";
 import { PostsState } from '../redux/reducers/postReducer';
 
 import PostTable from '../components/PostTable';
-
-type Title = {
-  name: string,
-  width: string
-}
+import { Title } from '../components/UserTable';
 
 const Posts = (props:any) => {
   const dispatch = useDispatch();
   const posts: PostsState = useSelector((state: RootState) => state.posts);
-  const titles: Title[] = [{name:'Title',width:"40%"},{name:'Body',width:"60%"}];
+  const titles: Title[] = [{ name: 'Title', width: "40%" }, { name: 'Body', width: "60%" }];
+  const paths: string[] = ['title','body']
 
   const id = props.match.params.id
   
@@ -24,7 +21,7 @@ const Posts = (props:any) => {
 
   return (
     <div>
-      <PostTable />
+      <PostTable titles={titles} paths={paths} values={posts.postList} />
     </div>
   )
 }

@@ -22,7 +22,7 @@ const Users: React.FunctionComponent<{}> = () => {
   return (
     <div>
       <SearchField />
-      <UserTable titles={titles} paths={paths} users={users.searchKey ? users.filteredUserList : users.userList }/>
+      <UserTable titles={titles} paths={paths} values={users.searchKey ? users.filteredUserList : users.userList }/>
     </div>
   )
 }

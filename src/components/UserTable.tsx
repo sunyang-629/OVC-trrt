@@ -54,11 +54,11 @@ export interface Title {
 
 type UserTableProps = {
   titles: Title[],
-  users: User[],
+  values: User[],
   paths: string[],
 }
 
-const UserTable:React.FunctionComponent<UserTableProps> = ({titles,users,paths}) => {
+const UserTable:React.FunctionComponent<UserTableProps> = ({titles,values,paths}) => {
   const classes = useStyles();
   const history = useHistory();
 
@@ -78,11 +78,11 @@ const UserTable:React.FunctionComponent<UserTableProps> = ({titles,users,paths})
           </TableRow>
         </TableHead>
         <TableBody>
-          {users.map((user) => (
-            <StyledTableRow onClick={(e) => handleClick(user.id, e)} key={user.id}>
+          {values.map((value) => (
+            <StyledTableRow onClick={(e) => handleClick(value.id, e)} key={value.id}>
               {paths.map(path =>
                 <StyledTableCell key={path} align="center">
-                  {_.get(user, path)}
+                  {_.get(value, path)}
                 </StyledTableCell>)
               }
             </StyledTableRow>

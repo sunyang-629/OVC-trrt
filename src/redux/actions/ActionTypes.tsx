@@ -1,0 +1,3 @@
+export enum ActionTypes {
+  FETCH_ALL_USERS_SUCCESS = 'FETCH_ALL_USERS_SUCCESS'
+}

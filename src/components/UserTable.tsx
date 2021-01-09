@@ -43,7 +43,7 @@ const rows = [
 ]
 
 type UserTableProps = {
-  titles:String[],
+  titles:string[],
 }
 
 const UserTable:React.FunctionComponent<UserTableProps> = ({titles}) => {
@@ -55,7 +55,7 @@ const UserTable:React.FunctionComponent<UserTableProps> = ({titles}) => {
         <TableHead>
           <TableRow>
             {titles.map(title => {
-              return <StyledTableCell align="center">{title}</StyledTableCell>
+              return <StyledTableCell key={title} align="center">{title}</StyledTableCell>
             })}
           </TableRow>
         </TableHead>

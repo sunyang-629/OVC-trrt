@@ -1,5 +1,6 @@
 import { ActionTypes } from './ActionTypes';
 import { Dispatch } from 'redux';
+import { usersUrl } from '../../urls/urls';
 import axios from 'axios';
 
 export interface User {
@@ -39,7 +40,7 @@ export const getAllUsersSuccess = (users:User[]):GetAllUsersSuccessAction => ({
 })
 
 export const getAllUsers = () => (dispatch:Dispatch<GetAllUsersSuccessAction>) => {
-  axios.get<User[]>("https://jsonplaceholder.typicode.com/users")
+  axios.get<User[]>(usersUrl)
     .then(res => {
       dispatch(getAllUsersSuccess(res.data));
     })

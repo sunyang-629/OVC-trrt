@@ -47,8 +47,13 @@ const useStyles = makeStyles({
   },
 });
 
+export interface Title {
+  name: string,
+  width: string
+}
+
 type UserTableProps = {
-  titles: string[],
+  titles: Title[],
   users: User[],
   paths: string[],
 }
@@ -68,7 +73,7 @@ const UserTable:React.FunctionComponent<UserTableProps> = ({titles,users,paths})
         <TableHead>
           <TableRow>
             {titles.map(title => {
-              return <StyledTableCell width="25%" className={classes.tableRightBorder} key={title} align="center">{title}</StyledTableCell>
+              return <StyledTableCell width={title.width} className={classes.tableRightBorder} key={title.name} align="center">{title.name}</StyledTableCell>
             })}
           </TableRow>
         </TableHead>

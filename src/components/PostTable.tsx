@@ -8,27 +8,23 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
-const useStyles = makeStyles({
-  table: {
-
-  },
-  tableLeftColumn: {
-    // borderWidth: 0,
-    // borderRightWidth: 1,
-    // borderColor: 'black',
-    // borderStyle: 'solid',
-  },
-});
+const useStyles = makeStyles({});
 
 export default function BasicTable() {
   const classes = useStyles();
 
+  type PostTableProps = {
+    titles: string[],
+    // posts: Post[],
+    paths: string[],
+  }
+
   return (
     <TableContainer component={Paper}>
-      <Table className={classes.table} width="100%" aria-label="simple table">
+      <Table width="100%" aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell align="center" width="40%" className={classes.tableLeftColumn}>Title</TableCell>
+            <TableCell align="center" width="40%">Title</TableCell>
             <TableCell align="center">Body</TableCell>
           </TableRow>
         </TableHead>

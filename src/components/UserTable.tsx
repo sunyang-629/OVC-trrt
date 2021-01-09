@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from "react-router-dom";
 import { withStyles, Theme, createStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -45,6 +46,12 @@ type UserTableProps = {
 
 const UserTable:React.FunctionComponent<UserTableProps> = ({titles,users}) => {
   const classes = useStyles();
+  const history = useHistory();
+
+  const handleClick = (id:number,e: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => {
+    console.log(id);
+    history.push('/users/' + id + '/posts')
+  }
 
   return (
     <TableContainer component={Paper}>
@@ -58,7 +65,7 @@ const UserTable:React.FunctionComponent<UserTableProps> = ({titles,users}) => {
         </TableHead>
         <TableBody>
           {users.map((user) => (
-            <StyledTableRow key={user.id}>
+            <StyledTableRow onClick={(e) => handleClick(user.id,e)} key={user.id}>
               <StyledTableCell align="center">{user.name}</StyledTableCell>
               <StyledTableCell align="center">{user.email}</StyledTableCell>
               <StyledTableCell align="center">{user.address.city}</StyledTableCell>

@@ -1,14 +1,16 @@
 import { ActionTypes, User, UserAction } from '../actions';
 import {filterByName} from '../../utils'
 
-const initialState: {
-  users: User[],
+export type UsersState = {
+  userList: User[],
   searchKey: string,
-  filteredUsers:User[],
-} = {
-  users: [],
+  filteredUserList:User[],
+}
+
+const initialState: UsersState = {
+  userList: [],
   searchKey: "",
-  filteredUsers:[]
+  filteredUserList:[]
 }
 
 export const userReducer = (state = initialState, action: UserAction) => {
@@ -16,13 +18,13 @@ export const userReducer = (state = initialState, action: UserAction) => {
     case ActionTypes.FETCH_ALL_USERS_SUCCESS:
       return {
         ...state,
-        users: action.payload
+        userList: action.payload
       };
     case ActionTypes.SET_USER_NAME_SEARCH_KEY:
       return {
         ...state,
         searchKey: action.payload,
-        filteredUsers: filterByName(state.users,action.payload)
+        filteredUserList: filterByName(state.userList,action.payload)
       };
     default:
       return state

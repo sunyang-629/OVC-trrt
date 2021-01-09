@@ -37,12 +37,10 @@ export interface SetUserNameSearchKeyAction {
   payload: string;
 }
 
-// export interface 
 
-
-export const getAllUsersSuccess = (users:User[]):GetAllUsersSuccessAction => ({
+export const getAllUsersSuccess = (userList:User[]):GetAllUsersSuccessAction => ({
   type: ActionTypes.FETCH_ALL_USERS_SUCCESS,
-  payload: users
+  payload: userList
 })
 
 export const getAllUsers = () => (dispatch:Dispatch<GetAllUsersSuccessAction>) => {

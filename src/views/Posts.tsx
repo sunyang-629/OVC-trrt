@@ -1,9 +1,10 @@
 import React from 'react'
+import PostTable from '../components/PostTable';
 
 const Posts = () => {
   return (
     <div>
-      <p>posts</p>
+      <PostTable />
     </div>
   )
 }

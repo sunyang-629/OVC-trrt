@@ -12,6 +12,7 @@ const Users: React.FunctionComponent<{}> = () => {
   const dispatch = useDispatch();
 
   const titles: string[] = ['name', 'email', 'city', 'company'];
+  const path: string[] = ['name', 'email', 'address[city]', 'company[name]'];
 
   const users:UsersState = useSelector((state: RootState) => state.users);
   
@@ -22,7 +23,7 @@ const Users: React.FunctionComponent<{}> = () => {
   return (
     <div>
       <SearchField />
-      <UserTable titles={titles} users={users.searchKey ? users.filteredUserList : users.userList }/>
+      <UserTable titles={titles} path={path} users={users.searchKey ? users.filteredUserList : users.userList }/>
     </div>
   )
 }

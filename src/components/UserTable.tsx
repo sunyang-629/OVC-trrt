@@ -9,6 +9,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
+import _ from 'lodash';
+
 import { User } from '../redux/actions';
 
 const StyledTableCell = withStyles((theme: Theme) =>
@@ -34,17 +36,24 @@ const StyledTableRow = withStyles((theme: Theme) =>
 )(TableRow);
 
 const useStyles = makeStyles({
-  table: {
-    minWidth: 700,
+  // table: {
+  //   minWidth: 700,
+  // },
+  tableRightBorder: {
+    borderWidth: 0,
+    borderRightWidth: 1,
+    borderColor: 'white',
+    borderStyle: 'solid',
   },
 });
 
 type UserTableProps = {
   titles: string[],
-  users: User[]
+  users: User[],
+  path: string[],
 }
 
-const UserTable:React.FunctionComponent<UserTableProps> = ({titles,users}) => {
+const UserTable:React.FunctionComponent<UserTableProps> = ({titles,users,path}) => {
   const classes = useStyles();
   const history = useHistory();
 
@@ -55,21 +64,22 @@ const UserTable:React.FunctionComponent<UserTableProps> = ({titles,users}) => {
 
   return (
     <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="customized table">
+      <Table width="100%" aria-label="customized table">
         <TableHead>
           <TableRow>
             {titles.map(title => {
-              return <StyledTableCell key={title} align="center">{title}</StyledTableCell>
+              return <StyledTableCell width="25%" className={classes.tableRightBorder} key={title} align="center">{title}</StyledTableCell>
             })}
           </TableRow>
         </TableHead>
         <TableBody>
           {users.map((user) => (
-            <StyledTableRow onClick={(e) => handleClick(user.id,e)} key={user.id}>
-              <StyledTableCell align="center">{user.name}</StyledTableCell>
-              <StyledTableCell align="center">{user.email}</StyledTableCell>
+            <StyledTableRow onClick={(e) => handleClick(user.id, e)} key={user.id}>
+              {path.map(p => <StyledTableCell key={p} align="center">{_.get(user,p)}</StyledTableCell>)}
+              
+              {/* <StyledTableCell align="center">{user.email}</StyledTableCell>
               <StyledTableCell align="center">{user.address.city}</StyledTableCell>
-              <StyledTableCell align="center">{user.company.name}</StyledTableCell>
+              <StyledTableCell align="center">{_.get(user,path[3])}</StyledTableCell> */}
             </StyledTableRow>
           ))}
         </TableBody>

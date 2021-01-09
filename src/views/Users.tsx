@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getAllUsers } from '../redux/actions/userActions';
 import { RootState } from "../redux/reducers/rootReducer";
 
-import _ from "lodash";
+// import _ from "lodash";
 
 import UserTable from '../components/UserTable';
 // export interface filteredUsers {
@@ -32,7 +32,7 @@ const Users: React.FunctionComponent<{}> = () => {
   console.log('users:',users);
   useEffect(() => {
     dispatch(getAllUsers())
-  },[])
+  },[dispatch])
 
   return (
     <div>

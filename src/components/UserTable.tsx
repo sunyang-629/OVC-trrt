@@ -38,12 +38,6 @@ const useStyles = makeStyles({
   },
 });
 
-const rows = [
-  { name: 'harry', calories: 123, fat: 5.9, carbs: 24, },
-  { name: 'potter', calories: 123, fat: 5.9, carbs: 24, },
-  { name: 'test', calories: 123, fat: 5.9, carbs: 24, },
-]
-
 type UserTableProps = {
   titles: string[],
   users: User[]

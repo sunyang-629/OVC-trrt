@@ -1,5 +1,5 @@
 import { ActionTypes, User, UserAction } from '../actions';
-import _ from "lodash";
+import {filterByName} from '../../utils'
 
 const initialState: {
   users: User[],
@@ -22,9 +22,7 @@ export const userReducer = (state = initialState, action: UserAction) => {
       return {
         ...state,
         searchKey: action.payload,
-        filteredUsers: _.filter([...state.users], o => {
-          return o.name.includes(action.payload)
-        })
+        filteredUsers: filterByName(state.users,action.payload)
       };
     default:
       return state

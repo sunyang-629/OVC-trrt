@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme: Theme) =>
 const SearchField:React.FunctionComponent<{}> = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const [searchValue, setSearchValue] = useState('123');
+  const [searchValue, setSearchValue] = useState('');
 
   const handleSubmit = (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

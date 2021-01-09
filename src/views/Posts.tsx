@@ -4,8 +4,8 @@ import { getAllPostsByUser } from '../redux/actions';
 import { RootState } from "../redux/reducers/rootReducer";
 import { PostsState } from '../redux/reducers/postReducer';
 
-import PostTable from '../components/PostTable';
-import { Title } from '../components/UserTable';
+import UnClickableTable from '../components/UnClickableTable';
+import { Title } from '../components/ClickableTable';
 
 const Posts = (props:any) => {
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ const Posts = (props:any) => {
 
   return (
     <div>
-      <PostTable titles={titles} paths={paths} values={posts.postList} />
+      <UnClickableTable titles={titles} paths={paths} values={posts.postList} />
     </div>
   )
 }

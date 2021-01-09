@@ -52,18 +52,17 @@ export interface Title {
   width: string
 }
 
-type UserTableProps = {
+type ClickableTableProps = {
   titles: Title[],
   values: User[],
   paths: string[],
 }
 
-const UserTable:React.FunctionComponent<UserTableProps> = ({titles,values,paths}) => {
+const ClickableTable:React.FunctionComponent<ClickableTableProps> = ({titles,values,paths}) => {
   const classes = useStyles();
   const history = useHistory();
 
   const handleClick = (id:number,e: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => {
-    console.log(id);
     history.push('/users/' + id + '/posts')
   }
 
@@ -93,4 +92,4 @@ const UserTable:React.FunctionComponent<UserTableProps> = ({titles,values,paths}
   );
 }
 
-export default UserTable;
+export default ClickableTable;

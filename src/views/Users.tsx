@@ -3,10 +3,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getAllUsers } from '../redux/actions';
 import { RootState } from "../redux/reducers/rootReducer";
 import { UsersState } from '../redux/reducers/userReducer';
-import { Title } from '../components/UserTable';
+import { Title } from '../components/ClickableTable';
 
 
-import UserTable from '../components/UserTable';
+import ClickableTable from '../components/ClickableTable';
 import SearchField from '../components/SearchField';
 
 const Users: React.FunctionComponent<{}> = () => {
@@ -22,7 +22,7 @@ const Users: React.FunctionComponent<{}> = () => {
   return (
     <div>
       <SearchField />
-      <UserTable titles={titles} paths={paths} values={users.searchKey ? users.filteredUserList : users.userList }/>
+      <ClickableTable titles={titles} paths={paths} values={users.searchKey ? users.filteredUserList : users.userList }/>
     </div>
   )
 }

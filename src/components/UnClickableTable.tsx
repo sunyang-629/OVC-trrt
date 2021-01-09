@@ -11,17 +11,17 @@ import Paper from '@material-ui/core/Paper';
 import _ from 'lodash';
 
 import { Post } from '../redux/actions';
-import { Title } from './UserTable';
+import { Title } from './ClickableTable';
 
 // const useStyles = makeStyles({});
 
-type PostTableProps = {
+type UnClickableTableProps = {
   titles: Title[],
   values: Post[],
   paths: string[],
 }
 
-const PostTable:React.FunctionComponent<PostTableProps> = ({titles,values,paths}) => {
+const UnClickableTable:React.FunctionComponent<UnClickableTableProps> = ({titles,values,paths}) => {
   // const classes = useStyles();
 
   return (
@@ -47,4 +47,4 @@ const PostTable:React.FunctionComponent<PostTableProps> = ({titles,values,paths}
   );
 }
 
-export default PostTable
+export default UnClickableTable

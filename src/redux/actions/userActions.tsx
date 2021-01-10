@@ -48,9 +48,9 @@ export interface FilterUsersByNameAction {
 }
 
 
-export const getAllUsers = () => (dispatch: Dispatch<GetAllUsersStartAction|GetAllUsersSuccessAction|GetAllUsersFailureAction>) => {
+export const getAllUsers = () => (dispatch: Dispatch<GetAllUsersStartAction|GetAllUsersSuccessAction|GetAllUsersFailureAction>):Promise<void> => {
   dispatch(getAllUsersStart())
-  axios.get<User[]>(usersUrl)
+  return axios.get<User[]>(usersUrl)
     .then(res => {
       dispatch(getAllUsersSuccess(res.data));
     })

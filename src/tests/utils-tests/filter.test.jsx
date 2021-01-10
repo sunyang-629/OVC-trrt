@@ -1,5 +1,5 @@
 // const filterByName = require('./filter')
-import {filterByName} from './filter'
+import {filterByName} from '../../utils/filter'
 
 const array = [
   { name: "Harry Potter" },

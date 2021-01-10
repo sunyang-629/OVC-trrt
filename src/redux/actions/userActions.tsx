@@ -27,15 +27,43 @@ export interface User {
   website: string;
 }
 
+export interface GetAllUsersStartAction {
+  type: ActionTypes.FETCH_ALL_USERS_START,
+  payload: boolean
+}
+
 export interface GetAllUsersSuccessAction {
   type: ActionTypes.FETCH_ALL_USERS_SUCCESS;
   payload: User[]
 }
 
-export interface SetUserNameSearchKeyAction {
-  type: ActionTypes.SET_USER_NAME_SEARCH_KEY;
+export interface GetAllUsersFailureAction {
+  type: ActionTypes.FETCH_ALL_USERS_FAILURE;
   payload: string;
 }
+
+export interface FilterUsersByNameAction {
+  type: ActionTypes.FILTER_USERS_BY_NAME;
+  payload: string;
+}
+
+
+export const getAllUsers = () => (dispatch: Dispatch<GetAllUsersStartAction|GetAllUsersSuccessAction|GetAllUsersFailureAction>) => {
+  dispatch(getAllUsersStart())
+  axios.get<User[]>(usersUrl)
+    .then(res => {
+      dispatch(getAllUsersSuccess(res.data));
+    })
+    .catch(error => {
+      dispatch(getAllUsersFailure())
+    })
+}
+
+
+export const getAllUsersStart = ():GetAllUsersStartAction => ({
+  type: ActionTypes.FETCH_ALL_USERS_START,
+  payload: false
+})
 
 
 export const getAllUsersSuccess = (userList:User[]):GetAllUsersSuccessAction => ({
@@ -43,21 +71,12 @@ export const getAllUsersSuccess = (userList:User[]):GetAllUsersSuccessAction => 
   payload: userList
 })
 
-export const getAllUsers = () => (dispatch:Dispatch<GetAllUsersSuccessAction>) => {
-  axios.get<User[]>(usersUrl)
-    .then(res => {
-      dispatch(getAllUsersSuccess(res.data));
-    })
-}
-
-export const setUserNameSearchKey = (search: string) => ({
-  type: ActionTypes.SET_USER_NAME_SEARCH_KEY,
-  payload: search
+export const getAllUsersFailure = (): GetAllUsersFailureAction => ({
+  type: ActionTypes.FETCH_ALL_USERS_FAILURE,
+  payload: 'Oops, something went wrong...'
 })
 
-// export const setUserNameSearchKey = (search: string) => {
-//   return {
-//     type: ActionTypes.SET_USER_NAME_SEARCH_KEY,
-//     payload: search
-//   }
-// }
+export const filterUsersByName = (search: string) => ({
+  type: ActionTypes.FILTER_USERS_BY_NAME,
+  payload: search
+})

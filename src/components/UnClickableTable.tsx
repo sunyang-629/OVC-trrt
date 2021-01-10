@@ -1,5 +1,5 @@
 import React from 'react';
-// import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -13,7 +13,12 @@ import _ from 'lodash';
 import { Post } from '../redux/actions';
 import { Title } from './ClickableTable';
 
-// const useStyles = makeStyles({});
+const useStyles = makeStyles({
+  header: {
+    background: "#000000",
+    color:"#f9f9f9"
+  }
+});
 
 type UnClickableTableProps = {
   titles: Title[],
@@ -22,19 +27,20 @@ type UnClickableTableProps = {
 }
 
 const UnClickableTable:React.FunctionComponent<UnClickableTableProps> = ({titles,values,paths}) => {
-  // const classes = useStyles();
+  const classes = useStyles();
 
   return (
     <TableContainer component={Paper}>
       <Table width="100%" aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell align="center" width="40%">Title</TableCell>
-            <TableCell align="center">Body</TableCell>
+            {titles.length && titles.map(title => {
+              return <TableCell key={title.name} className={classes.header} align="center" width={ title.width }>{ title.name }</TableCell>
+            })}
           </TableRow>
         </TableHead>
         <TableBody>
-          {values.map((value) => (
+          {values.length && values.map((value) => (
             <TableRow key={value.id}>
               {paths.map(path => {
                 return <TableCell key={path} align="left">{_.get(value, path)}</TableCell>

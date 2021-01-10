@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
-import { setUserNameSearchKey } from '../redux/actions';
+import { filterUsersByName } from '../redux/actions';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -24,11 +24,10 @@ const SearchField:React.FunctionComponent<{}> = () => {
   const handleSubmit = (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSearchValue("");
-    dispatch(setUserNameSearchKey(searchValue));
+    dispatch(filterUsersByName(searchValue));
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    // console.log(e.target);
     setSearchValue(e.target.value);
   }
 

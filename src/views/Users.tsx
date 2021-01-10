@@ -22,7 +22,8 @@ const Users: React.FunctionComponent<{}> = () => {
   return (
     <div>
       <SearchField />
-      <ClickableTable titles={titles} paths={paths} values={users.searchKey ? users.filteredUserList : users.userList }/>
+      {users.error && <div>{ users.error }</div>}
+      <ClickableTable titles={titles} paths={paths} values={users.searchKey ? users.filteredUserList : users.userList} isLoading={users.isLoading}/>    
     </div>
   )
 }

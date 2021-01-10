@@ -13,6 +13,8 @@ import _ from 'lodash';
 
 import { User } from '../redux/actions';
 
+import CircularIndeterminate from './Circular';
+
 const StyledTableCell = withStyles((theme: Theme) =>
   createStyles({
     head: {
@@ -36,14 +38,16 @@ const StyledTableRow = withStyles((theme: Theme) =>
 )(TableRow);
 
 const useStyles = makeStyles({
-  // table: {
-  //   minWidth: 700,
-  // },
   tableRightBorder: {
     borderWidth: 0,
     borderRightWidth: 1,
     borderColor: 'white',
     borderStyle: 'solid',
+  },
+  clickableRow:{
+    "&:hover":{
+      cursor:"pointer"
+    },
   },
 });
 
@@ -56,9 +60,10 @@ type ClickableTableProps = {
   titles: Title[],
   values: User[],
   paths: string[],
+  isLoading: boolean
 }
 
-const ClickableTable:React.FunctionComponent<ClickableTableProps> = ({titles,values,paths}) => {
+const ClickableTable:React.FunctionComponent<ClickableTableProps> = ({titles,values,paths,isLoading}) => {
   const classes = useStyles();
   const history = useHistory();
 
@@ -77,15 +82,22 @@ const ClickableTable:React.FunctionComponent<ClickableTableProps> = ({titles,val
           </TableRow>
         </TableHead>
         <TableBody>
-          {values.map((value) => (
-            <StyledTableRow onClick={(e) => handleClick(value.id, e)} key={value.id}>
+          {!isLoading ? values.map((value) => (
+            <StyledTableRow className={classes.clickableRow} onClick={(e) => handleClick(value.id, e)} key={value.id}>
               {paths.map(path =>
                 <StyledTableCell key={path} align="center">
                   {_.get(value, path)}
                 </StyledTableCell>)
               }
             </StyledTableRow>
-          ))}
+          )) : 
+            <StyledTableRow>
+              {paths.map(path =>
+                <StyledTableCell key={path} align="center">
+                  <CircularIndeterminate />
+                </StyledTableCell>)}
+            </StyledTableRow>
+          }
         </TableBody>
       </Table>
     </TableContainer>

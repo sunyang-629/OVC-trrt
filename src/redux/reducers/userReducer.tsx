@@ -1,5 +1,5 @@
 import { ActionTypes, User, UserAction } from '../actions';
-import {filterByName} from '../../utils'
+import { filterByName } from '../../utils';
 
 export type UsersState = {
   userList: User[],
@@ -23,7 +23,7 @@ export const userReducer = (state = initialState, action: UserAction) => {
       return {
         ...state,
         userList: action.payload,
-        isLoading: false
+        isLoading: false,
       };
     case ActionTypes.FETCH_ALL_USERS_START:
       return {

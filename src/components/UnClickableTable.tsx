@@ -12,6 +12,7 @@ import _ from 'lodash';
 
 import { Post } from '../redux/actions';
 import { Title } from './ClickableTable';
+import CircularIndeterminate from './Circular';
 
 const useStyles = makeStyles({
   header: {
@@ -24,9 +25,10 @@ type UnClickableTableProps = {
   titles: Title[],
   values: Post[],
   paths: string[],
+  isLoading: boolean
 }
 
-const UnClickableTable:React.FunctionComponent<UnClickableTableProps> = ({titles,values,paths}) => {
+const UnClickableTable:React.FunctionComponent<UnClickableTableProps> = ({titles,values,paths,isLoading}) => {
   const classes = useStyles();
 
   return (
@@ -34,19 +36,26 @@ const UnClickableTable:React.FunctionComponent<UnClickableTableProps> = ({titles
       <Table width="100%" aria-label="simple table">
         <TableHead>
           <TableRow>
-            {titles.length && titles.map(title => {
+            {titles.map(title => {
               return <TableCell key={title.name} className={classes.header} align="center" width={ title.width }>{ title.name }</TableCell>
             })}
           </TableRow>
         </TableHead>
         <TableBody>
-          {values.length && values.map((value) => (
+          {!isLoading ? values.map((value) => (
             <TableRow key={value.id}>
               {paths.map(path => {
                 return <TableCell key={path} align="left">{_.get(value, path)}</TableCell>
               })}
             </TableRow>
-          ))}
+          )) : 
+            <TableRow>
+                {paths.map(path =>
+                <TableCell key={path} align="center">
+                  <CircularIndeterminate />
+                </TableCell>)}
+            </TableRow>
+          }
         </TableBody>
       </Table>
     </TableContainer>

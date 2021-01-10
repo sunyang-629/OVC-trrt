@@ -21,7 +21,8 @@ const Posts = (props:any) => {
 
   return (
     <div>
-      <UnClickableTable titles={titles} paths={paths} values={posts.postList} />
+      {posts.error && <div>{ posts.error }</div>}
+      <UnClickableTable titles={titles} paths={paths} values={posts.postList} isLoading={posts.isLoading} />
     </div>
   )
 }

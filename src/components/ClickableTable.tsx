@@ -1,5 +1,6 @@
 import React from 'react';
 import { useHistory } from "react-router-dom";
+import { useDispatch } from 'react-redux';
 import { withStyles, Theme, createStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -11,7 +12,7 @@ import Paper from '@material-ui/core/Paper';
 
 import _ from 'lodash';
 
-import { User } from '../redux/actions';
+import { User, filterUsersByName } from '../redux/actions';
 
 import CircularIndeterminate from './Circular';
 
@@ -65,10 +66,12 @@ type ClickableTableProps = {
 
 const ClickableTable:React.FunctionComponent<ClickableTableProps> = ({titles,values,paths,isLoading}) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const history = useHistory();
 
-  const handleClick = (id:number,e: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => {
-    history.push('/users/' + id + '/posts')
+  const handleClick = (id: number, e: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => {
+    dispatch(filterUsersByName(""));
+    history.push('/users/' + id + '/posts');
   }
 
   return (
